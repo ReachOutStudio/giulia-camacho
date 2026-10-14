@@ -5,7 +5,7 @@ Uso:
   python3 gerador/build.py --check     escreve mudou=true/false em $GITHUB_OUTPUT
 
 Variáveis de ambiente:
-  SITE_URL           endereço público, terminando em "/" (padrão: GitHub Pages)
+  SITE_URL           endereço público, terminando em "/" (usado se gerador/endereco.txt não existir)
   SANITY_PROJECT_ID  padrão 9ybkssyz
   SANITY_DATASET     padrão production
 Só usa a biblioteca padrão do Python.
@@ -23,7 +23,11 @@ import urllib.parse
 import urllib.request
 
 HERE = pathlib.Path(__file__).resolve().parent
-SITE_URL = os.environ.get("SITE_URL", "https://reachoutstudio.github.io/giulia-camacho/")
+# Endereço público do site. O arquivo gerador/endereco.txt tem prioridade sobre a variável SITE_URL,
+# para trocar de domínio basta editar esse arquivo.
+_URL_FILE = HERE / "endereco.txt"
+SITE_URL = (_URL_FILE.read_text().strip() if _URL_FILE.exists() else
+            os.environ.get("SITE_URL", "https://reachoutstudio.github.io/giulia-camacho/"))
 assert SITE_URL.endswith("/")
 BASE_PATH = urllib.parse.urlparse(SITE_URL).path
 PROJECT = os.environ.get("SANITY_PROJECT_ID", "9ybkssyz")

@@ -19,4 +19,4 @@ Site da fotógrafa Giulia Camacho, publicado em https://reachoutstudio.github.io
 python3 gerador/build.py dist
 ```
 
-Use `SITE_URL=https://seu-dominio/` para gerar com outro endereço.
+O endereço público do site fica em `gerador/endereco.txt`. Para trocar de domínio, edite esse arquivo, configure o domínio em Settings → Pages e aponte o DNS para o GitHub Pages.
