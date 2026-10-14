@@ -139,7 +139,8 @@ a.ph { cursor: pointer; }
 .lb-bar { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font: 400 .78rem/1.4 var(--f-mono); color: var(--terra-2); }
 .lb-bar button { background: none; border: 0; cursor: pointer; font: 700 .75rem/1 var(--f-sans); letter-spacing: .09em; text-transform: uppercase; color: var(--laranja-texto); padding: 6px 0; }
 .lb-stage { position: relative; display: grid; place-items: center; min-height: 0; padding: 12px 0; }
-.lb-stage img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+.lb-stage { overflow: hidden; }
+.lb-stage img { position: absolute; inset: 12px 0; width: 100%; height: calc(100% - 24px); max-width: none; max-height: none; object-fit: contain; background: transparent !important; }
 .lb-nav { position: absolute; top: 0; bottom: 0; width: 34%; background: none; border: 0; cursor: pointer; }
 .lb-nav:focus-visible { outline-offset: -4px; }
 #lb-prev { left: 0; cursor: w-resize; }
