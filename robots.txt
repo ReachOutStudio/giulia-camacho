@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://reachoutstudio.github.io/giulia-camacho/sitemap.xml
