@@ -1,0 +1,51 @@
+name: Publicar site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  repository_dispatch:
+    types: [sanity-publish]
+  schedule:
+    - cron: "*/10 * * * *"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+env:
+  SITE_URL: https://reachoutstudio.github.io/giulia-camacho/
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    outputs:
+      mudou: ${{ steps.check.outputs.mudou }}
+    steps:
+      - uses: actions/checkout@v5
+      - id: check
+        name: Ver se o conteúdo do Sanity mudou
+        run: python3 gerador/build.py --check
+
+  publicar:
+    needs: verificar
+    if: needs.verificar.outputs.mudou == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Gerar o site com o conteúdo do Sanity
+        run: python3 gerador/build.py dist
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+      - id: deploy
+        uses: actions/deploy-pages@v4
