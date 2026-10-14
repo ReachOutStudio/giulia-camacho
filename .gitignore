@@ -1,3 +1,7 @@
 dist/
 __pycache__/
 .DS_Store
+studio/node_modules/
+studio/dist/
+studio/.sanity/
+studio/tsconfig.tsbuildinfo
