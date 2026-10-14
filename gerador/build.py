@@ -332,7 +332,7 @@ def page(key, lang, title, desc, body, og=None, extra_end=""):
 <main id="main" class="main" tabindex="-1">
 {body}
 </main>
-<p class="foot-note">© 2026 Giulia Camacho</p>
+<p class="foot-note">© 2026 Reach Out Creative</p>
 {extra_end}<script src="{root}assets/site.js?v={VER["js"]}" defer></script>
 </body>
 </html>
