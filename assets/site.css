@@ -1,3 +1,7 @@
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
 
 /* Layout: barra lateral cor de pedra fixa à esquerda (marca, menu, contato); fotos em fileiras de duas, com alturas iguais e sem corte; no celular a barra vira faixa no topo. */
 :root {
